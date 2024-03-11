@@ -1,3 +1,4 @@
+// teamgenerator.js
 class TeamGenerator {
   constructor(players, playersPerTeam = 3) {
     this.players = players;
@@ -6,7 +7,7 @@ class TeamGenerator {
   }
 
   generateTeams() {
-    let shuffledPlayers = [...this.players].sort(() => 0.5 - Math.random()); // Mélange aléatoire des joueurs
+    let shuffledPlayers = [...this.players].sort(() => 0.5 - Math.random());
     let teamIndex = 0;
 
     while (shuffledPlayers.length > 0) {
@@ -24,8 +25,16 @@ class TeamGenerator {
   getTeams() {
     return this.teams;
   }
+
+  // Nouvelle méthode pour trier les équipes par nombre de joueurs
+  sortTeamsByPlayerCount() {
+    return this.teams.slice().sort((teamA, teamB) => teamA.players.length - teamB.players.length);
+  }
+
+  // Nouvelle méthode pour trouver une équipe par nom de joueur
+  findTeamByPlayerName(playerName) {
+    return this.teams.find(team => team.players.includes(playerName));
+  }
 }
 
-export default  TeamGenerator
-// Exemple d'utilisation
-
+export default TeamGenerator;
